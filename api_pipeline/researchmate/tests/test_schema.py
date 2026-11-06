@@ -65,6 +65,44 @@ class TestPaperSchema(unittest.TestCase):
         with self.assertRaisesRegex(TypeError, "year"):
             validate_paper_record(paper)
 
+    def test_legacy_record_remains_valid_without_extensions(self):
+        validate_paper_record(self.paper)
+
+    def test_identifier_and_field_provenance_extensions(self):
+        paper = self.paper.copy()
+        paper.update(
+            {
+                "canonical_id": "doi:10.1234/example",
+                "identifiers": {"doi": "10.1234/example", "pmid": "12345"},
+                "provenance": {
+                    "abstract": [
+                        {
+                            "source": "Europe PMC",
+                            "source_id": "12345",
+                            "method": "pmid_exact",
+                            "retrieved_at": "2026-11-04T12:00:00Z",
+                        }
+                    ]
+                },
+            }
+        )
+
+        validate_paper_record(paper)
+
+    def test_identifier_values_must_be_non_empty_strings(self):
+        paper = self.paper.copy()
+        paper["identifiers"] = {"doi": "  "}
+
+        with self.assertRaisesRegex(ValueError, "non-empty"):
+            validate_paper_record(paper)
+
+    def test_provenance_requires_source_and_method(self):
+        paper = self.paper.copy()
+        paper["provenance"] = {"abstract": [{"source": "Crossref"}]}
+
+        with self.assertRaisesRegex(ValueError, "method"):
+            validate_paper_record(paper)
+
 
 if __name__ == "__main__":
     unittest.main()
