@@ -1,2 +1,4 @@
 __pycache__/
 *.py[cod]
+.venv/
+api_pipeline/chroma_db/

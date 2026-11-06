@@ -2,6 +2,7 @@
 
 from researchmate import (
     DEFAULT_QUERIES,
+    ChromaPaperStore,
     query_source_comparison,
     results_to_dataframe,
     run_query_batch,
@@ -10,7 +11,7 @@ from researchmate import (
 results = run_query_batch(
     DEFAULT_QUERIES,
     max_results=5,
-    sources=("pubmed", "arxiv", "crossref"),
+    sources=("pubmed", "arxiv", "crossref", "europepmc", "openalex"),
     delay_between_queries=5,
 )
 
@@ -24,3 +25,8 @@ print("\nSaved researchmate_25_queries.csv")
 print("Saved researchmate_api_comparison.csv")
 print("\nResults by source:")
 print(df["source"].value_counts())
+
+with ChromaPaperStore() as store:
+    stored = store.upsert_records(results)
+    print(f"\nUpserted {stored} unique papers into ChromaDB.")
+    print(f"Persistent collection now contains {store.count()} papers.")
