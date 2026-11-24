@@ -1,0 +1,26 @@
+search_query,rank,title,source,year,has_abstract,bm25_score
+climate change agriculture,1,Climate Change and Agriculture,Crossref,2023,True,14.4635106533678
+climate change agriculture,2,Climate-Smart Agriculture and International Climate Change Negotiation Forums,Crossref,2016,False,13.201384982462564
+climate change agriculture,3,Resiliency of Prairie Agriculture to Climate Change,Crossref,2019,False,12.62509962782817
+climate change agriculture,4,Intelligent Agricultural Greenhouse Control System Based on Internet of Things and Machine Learning,arXiv,2024,True,8.478886047916879
+climate change agriculture,5,Climate change and food security,Crossref,2026,False,7.89283428788567
+machine learning healthcare,1,Machine Learning in Healthcare,Crossref,2022,False,10.951281667995215
+machine learning healthcare,2,Applied Machine Learning for Healthcare,Crossref,2017,False,10.895559742665048
+machine learning healthcare,3,Machine Learning for Healthcare Diagnostics,Crossref,2020,False,10.895559742665048
+machine learning healthcare,4,Use of Machine Learning in Healthcare,Crossref,2022,False,10.840401991396638
+machine learning healthcare,5,Machine learning for healthcare technologies - an introduction,Crossref,2016,False,10.785799889112266
+renewable energy storage,1,Optimal sizing of renewable energy storage: A comparative study of hydrogen and battery system considering degradation and seasonal storage,arXiv,2022,True,15.126206906268417
+renewable energy storage,2,Renewable Energy Technologies and Energy Storage Systems,Crossref,2026,False,14.285078856182498
+renewable energy storage,3,Renewable-storage sizing approaches for centralized and distributed renewable energy—A state-of-the-art review,Crossref,2024,False,14.030495214559018
+renewable energy storage,4,Storage of Renewable Energy,Crossref,2024,False,13.871618261418242
+renewable energy storage,5,Chapter 2. Renewable Energy Generation and Storage,Crossref,2022,False,13.662008086511207
+quantum computing,1,A Gentle Introduction to Quantum Computing Algorithms with Applications to Universal Prediction,arXiv,2020,True,11.489793906091162
+quantum computing,2,The Universality of the Quantum Fourier Transform in Forming the Basis of Quantum Computing Algorithms,arXiv,2000,True,11.066673547260734
+quantum computing,3,Emerging quantum computing algorithms for quantum chemistry,arXiv,2021,True,10.68239641040865
+quantum computing,4,A Quantum-compute Algorithm for Exact Laser-driven Electron Dynamics in Molecules,arXiv,2022,True,9.68568129362848
+quantum computing,5,A polynomial quantum computing algorithm for solving the dualization problem,arXiv,2023,True,9.19884044467928
+artificial intelligence robotics,1,Robotics and HSI in Robotics,Crossref,2020,False,8.513220073667618
+artificial intelligence robotics,2,6 Robotics and HSI in Robotics,Crossref,2021,False,8.48794571939033
+artificial intelligence robotics,3,Artificial Intelligence and Human Society (Artificial Intelligence and Education),Crossref,2023,True,8.062287665376767
+artificial intelligence robotics,4,ARTIFICIAL INTELLIGENCE AND EDUCATION,Crossref,2020,False,7.64346118986141
+artificial intelligence robotics,5,Third international conference on artificial intelligence and education,Crossref,1987,False,7.490235345756403
