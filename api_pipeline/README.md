@@ -33,6 +33,8 @@ api_pipeline/
 │       └── test_pipeline.py
 ├── run_example.py
 ├── run_25_queries.py
+├── app.py
+├── requirements-app.txt
 ├── requirements.txt
 └── README.md
 ```
@@ -114,6 +116,75 @@ Re-running an upsert updates the same canonical ID.
 The database directory is ignored by Git. Chroma's local `PersistentClient` is
 intended for local development; a server-backed client is the documented choice
 for a production deployment.
+
+### View the local database
+
+The read-only browser displays papers in a table, lets you filter by source,
+search by semantic similarity, and inspect an individual record's abstract,
+keywords, identifiers, provenance, and metadata conflicts. It reads the local
+`chroma_db` collection and does not add, edit, or delete records.
+
+Install the viewer dependency once, from this folder:
+
+```powershell
+python -m pip install -r requirements-viewer.txt
+```
+
+Then start the viewer:
+
+```powershell
+python -m streamlit run view_chroma.py
+```
+
+Streamlit opens the viewer in your browser. In VS Code, leave the terminal
+running while browsing; press `Ctrl+C` in that terminal to stop it. If the
+viewer reports an empty collection, first run the paper search/storage workflow
+so records are upserted into `api_pipeline/chroma_db`.
+
+### Run the ResearchMate prototype
+
+The chat prototype combines the local paper collection with the teammate's
+chat interface and weighted ranking approach. It searches the existing
+`researchmate_papers` collection, reranks the retrieved records using 70%
+semantic similarity, 20% keyword overlap, and 10% recency, then displays the
+ranked papers. If a Groq key is configured, it also drafts an answer using the
+top five records' abstracts and asks the model to cite them as `[1]`, `[2]`,
+and so on. Without a key, paper search and ranking still work.
+
+By default, each new question is also searched across PubMed, arXiv, Crossref,
+Europe PMC, and OpenAlex. Returned records pass through the existing
+standardization, abstract recovery, and deduplication pipeline, then are
+upserted into `researchmate_papers` before the local search and ranking run.
+The source APIs used here do not require user API keys. A second Chroma
+collection, `researchmate_online_query_cache`, remembers successful exact
+queries so the same question does not repeat all five online searches. The
+app still searches ChromaDB locally each time. Use **Refresh online results
+even for cached questions** in the sidebar to bypass that cache; turn off
+**Search online sources automatically** to use only the local database.
+
+Install the app dependencies from this folder:
+
+```powershell
+python -m pip install -r requirements-app.txt
+```
+
+Optionally create `api_pipeline/.env` with your own Groq credentials:
+
+```text
+GROQ_API_KEY=your_key_here
+GROQ_MODEL=openai/gpt-oss-20b
+```
+
+The `.env` file is ignored by Git. Then launch the app:
+
+```powershell
+python -m streamlit run app.py
+```
+
+The app writes newly retrieved online records and exact-query cache entries to
+ChromaDB. It does not delete records. Its ranking formula is a first prototype
+and should be checked against manually judged queries before being treated as
+validated.
 
 ## Verification results
 
